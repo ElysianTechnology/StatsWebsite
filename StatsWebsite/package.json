@@ -9,6 +9,7 @@
   "dependencies": {
     "angular": "^1.6.2",
     "angular-ui-router": "^1.0.0-beta.3",
+    "bootstrap": "^4.0.0-alpha.6",
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "0.0.5-beta.2",
     "jquery": "^3.1.1",
