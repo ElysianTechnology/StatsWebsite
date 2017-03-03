@@ -159,6 +159,7 @@
     <Compile Include="Data Context\LeagueData.cs">
       <DependentUpon>Stat.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data Context\PredictEngine.cs" />
     <Compile Include="Data Context\Stat.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

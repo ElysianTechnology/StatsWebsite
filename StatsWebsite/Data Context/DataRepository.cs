@@ -225,5 +225,17 @@ namespace StatsWebsite.Data_Context
         public double OffensiveRatio { get; set; }
         public double DefensiveRatio { get; set; }
     }
+
+    public class MatchResult
+    {
+        public DateTime DateTime { get; set; }
+        public string HomeTeam { get; set; }
+        public string AwayTeam { get; set; }
+        public float HomeOdds { get; set; }
+        public float DrawOdds { get; set; }
+        public float AwayOdds { get; set; }
+        public float OurHomeAdds { get; set; }
+        public float OurAwayOdds { get; set; }
+    }
     
 }

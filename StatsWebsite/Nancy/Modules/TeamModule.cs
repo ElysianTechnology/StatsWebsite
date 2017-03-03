@@ -40,7 +40,17 @@ namespace StatsWebsite.Nancy.Modules
 
             Get["/upcoming"] = _ =>
             {
-                return Response.AsJson(Startup.leagueRepo.GetNextFixtures(0,4));
+               var data = Startup.leagueRepo.GetNextFixtures(0, 4);
+                var newReturn = data.fixtures.Select(x => new MatchResult
+                {
+                    DateTime = x.date,
+                    HomeTeam = x.homeTeamName,
+                    AwayTeam = x.awayTeamName,
+                    HomeOdds = x.odds.homeWin,
+                    DrawOdds = x.odds.draw,
+                    AwayOdds = x.odds.awayWin
+                });
+                return Response.AsJson(newReturn);
             };
         }
     }
