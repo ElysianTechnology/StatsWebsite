@@ -3,12 +3,17 @@ using Microsoft.Owin.FileSystems;
 using Microsoft.Owin.StaticFiles;
 using Nancy.Owin;
 using Owin;
+using StatsWebsite.Data_Context;
 using StatsWebsite.Nancy;
+using StatsWebsite.Nancy.Helper_Functions;
 
 namespace StatsWebsite
 {
     public class Startup
     {
+        public static DataRepository leagueRepo;
+        public static AlgoTestContext context;
+        public static Utils.CsvHandler<LeagueData, Utils.LeagueDataMap> csvHandler;
         public void Configuration(IAppBuilder app)
         {
             var physicalFileSystem = new PhysicalFileSystem(@".\"); //. = root, Web = your physical directory that contains all other static content, see prev step
@@ -23,6 +28,9 @@ namespace StatsWebsite
 
             app.UseNancy(NancyConfig);
             app.UseStageMarker(PipelineStage.MapHandler);
+            context = new AlgoTestContext();
+            leagueRepo = new DataRepository(context);
+            csvHandler = new Utils.CsvHandler<LeagueData, Utils.LeagueDataMap>();
         }
 
         private static void NancyConfig(NancyOptions nancyOptions)

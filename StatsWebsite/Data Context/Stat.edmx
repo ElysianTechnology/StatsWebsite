@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CDMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LeagueData">
+          <Key>
+            <PropertyRef Name="DateTime" />
+            <PropertyRef Name="HomeTeam" />
+            <PropertyRef Name="AwayTeam" />
+          </Key>
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="HomeTeam" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AwayTeam" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="League" Type="nvarchar(max)" />
+          <Property Name="FullTimeHomeGoals" Type="int" Nullable="false" />
+          <Property Name="FullTimeAwayGoals" Type="int" Nullable="false" />
+          <Property Name="FullTimeResult" Type="nvarchar(max)" />
+          <Property Name="HalfTimeHomeGoals" Type="int" Nullable="false" />
+          <Property Name="HalfTimeAwayGoals" Type="int" Nullable="false" />
+          <Property Name="HalfTimeResult" Type="nvarchar(max)" />
+          <Property Name="Referee" Type="nvarchar(max)" />
+          <Property Name="HomeTeamShots" Type="int" Nullable="false" />
+          <Property Name="AwayTeamShots" Type="int" Nullable="false" />
+          <Property Name="HomeTeamShotsOnTarget" Type="int" Nullable="false" />
+          <Property Name="AwayTeamShotsOnTarget" Type="int" Nullable="false" />
+          <Property Name="HomeTeamFoulsCommited" Type="int" Nullable="false" />
+          <Property Name="AwayTeamFoulsCommited" Type="int" Nullable="false" />
+          <Property Name="HomeTeamCorners" Type="int" Nullable="false" />
+          <Property Name="AwayTeamCorners" Type="int" Nullable="false" />
+          <Property Name="HomeTeamYellowCards" Type="int" Nullable="false" />
+          <Property Name="AwayTeamYellowCards" Type="int" Nullable="false" />
+          <Property Name="HomeTeamRedCards" Type="int" Nullable="false" />
+          <Property Name="AwayTeamRedCards" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CDMModelStoreContainer">
+          <EntitySet Name="LeagueData" EntityType="Self.LeagueData" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CDMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LeagueData">
+          <Key>
+            <PropertyRef Name="DateTime" />
+            <PropertyRef Name="HomeTeam" />
+            <PropertyRef Name="AwayTeam" />
+          </Key>
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HomeTeam" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AwayTeam" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="League" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullTimeHomeGoals" Type="Int32" Nullable="false" />
+          <Property Name="FullTimeAwayGoals" Type="Int32" Nullable="false" />
+          <Property Name="FullTimeResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HalfTimeHomeGoals" Type="Int32" Nullable="false" />
+          <Property Name="HalfTimeAwayGoals" Type="Int32" Nullable="false" />
+          <Property Name="HalfTimeResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Referee" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HomeTeamShots" Type="Int32" Nullable="false" />
+          <Property Name="AwayTeamShots" Type="Int32" Nullable="false" />
+          <Property Name="HomeTeamShotsOnTarget" Type="Int32" Nullable="false" />
+          <Property Name="AwayTeamShotsOnTarget" Type="Int32" Nullable="false" />
+          <Property Name="HomeTeamFoulsCommited" Type="Int32" Nullable="false" />
+          <Property Name="AwayTeamFoulsCommited" Type="Int32" Nullable="false" />
+          <Property Name="HomeTeamCorners" Type="Int32" Nullable="false" />
+          <Property Name="AwayTeamCorners" Type="Int32" Nullable="false" />
+          <Property Name="HomeTeamYellowCards" Type="Int32" Nullable="false" />
+          <Property Name="AwayTeamYellowCards" Type="Int32" Nullable="false" />
+          <Property Name="HomeTeamRedCards" Type="Int32" Nullable="false" />
+          <Property Name="AwayTeamRedCards" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CDMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LeagueDatas" EntityType="Self.LeagueData" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CDMModelStoreContainer" CdmEntityContainer="CDMEntities">
+          <EntitySetMapping Name="LeagueDatas">
+            <EntityTypeMapping TypeName="CDMModel.LeagueData">
+              <MappingFragment StoreEntitySet="LeagueData">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="HomeTeam" ColumnName="HomeTeam" />
+                <ScalarProperty Name="AwayTeam" ColumnName="AwayTeam" />
+                <ScalarProperty Name="League" ColumnName="League" />
+                <ScalarProperty Name="FullTimeHomeGoals" ColumnName="FullTimeHomeGoals" />
+                <ScalarProperty Name="FullTimeAwayGoals" ColumnName="FullTimeAwayGoals" />
+                <ScalarProperty Name="FullTimeResult" ColumnName="FullTimeResult" />
+                <ScalarProperty Name="HalfTimeHomeGoals" ColumnName="HalfTimeHomeGoals" />
+                <ScalarProperty Name="HalfTimeAwayGoals" ColumnName="HalfTimeAwayGoals" />
+                <ScalarProperty Name="HalfTimeResult" ColumnName="HalfTimeResult" />
+                <ScalarProperty Name="Referee" ColumnName="Referee" />
+                <ScalarProperty Name="HomeTeamShots" ColumnName="HomeTeamShots" />
+                <ScalarProperty Name="AwayTeamShots" ColumnName="AwayTeamShots" />
+                <ScalarProperty Name="HomeTeamShotsOnTarget" ColumnName="HomeTeamShotsOnTarget" />
+                <ScalarProperty Name="AwayTeamShotsOnTarget" ColumnName="AwayTeamShotsOnTarget" />
+                <ScalarProperty Name="HomeTeamFoulsCommited" ColumnName="HomeTeamFoulsCommited" />
+                <ScalarProperty Name="AwayTeamFoulsCommited" ColumnName="AwayTeamFoulsCommited" />
+                <ScalarProperty Name="HomeTeamCorners" ColumnName="HomeTeamCorners" />
+                <ScalarProperty Name="AwayTeamCorners" ColumnName="AwayTeamCorners" />
+                <ScalarProperty Name="HomeTeamYellowCards" ColumnName="HomeTeamYellowCards" />
+                <ScalarProperty Name="AwayTeamYellowCards" ColumnName="AwayTeamYellowCards" />
+                <ScalarProperty Name="HomeTeamRedCards" ColumnName="HomeTeamRedCards" />
+                <ScalarProperty Name="AwayTeamRedCards" ColumnName="AwayTeamRedCards" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
