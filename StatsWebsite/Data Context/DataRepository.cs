@@ -113,9 +113,11 @@ namespace StatsWebsite.Data_Context
 
         }
 
-        public NextFixtures GetNextFixtures(int league)
+        public NextFixtures GetNextFixtures(int league, int matchdays)
         {
-            const string WEBSERVICE_URL = "http://api.football-data.org/v1/competitions/426/fixtures?timeFrame=n4";
+            var i = 426+league;
+            
+            string WEBSERVICE_URL = string.Format("http://api.football-data.org/v1/competitions/{0}/fixtures?timeFrame=n{1}", i, matchdays);
             try
             {
                 var webRequest = System.Net.WebRequest.Create(WEBSERVICE_URL);
