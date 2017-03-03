@@ -40,7 +40,7 @@ namespace StatsWebsite.Nancy.Modules
 
             Get["/upcoming"] = _ =>
             {
-                return Response.AsJson(Startup.leagueRepo.GetNextFixtures(0));
+                return Response.AsJson(Startup.leagueRepo.GetNextFixtures(0,4));
             };
         }
     }
