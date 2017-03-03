@@ -234,8 +234,8 @@ namespace StatsWebsite.Data_Context
         public float HomeOdds { get; set; }
         public float DrawOdds { get; set; }
         public float AwayOdds { get; set; }
-        public float OurHomeAdds { get; set; }
-        public float OurAwayOdds { get; set; }
+        public float OurHomePercent { get; set; }
+        public float OurAwayPercent { get; set; }
     }
     
 }
