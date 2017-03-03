@@ -104,8 +104,9 @@ namespace StatsWebsite.Data_Context
         {
 
             var league_ = string.Format("E{0}", league);
+            var date = DateTime.Today.AddMonths(-1);
             var data =
-                _context.LeagueData.Where(x => x.League == league_)
+                _context.LeagueData.Where(x => x.League == league_ && x.DateTime >= date)
                     .Select(x => x.HomeTeam)
                     .Distinct().ToList();
 
@@ -234,8 +235,7 @@ namespace StatsWebsite.Data_Context
         public float HomeOdds { get; set; }
         public float DrawOdds { get; set; }
         public float AwayOdds { get; set; }
-        public float OurHomePercent { get; set; }
-        public float OurAwayPercent { get; set; }
+        public PredictEngine.PredictionResults OurPercents { get; set; }
     }
     
 }

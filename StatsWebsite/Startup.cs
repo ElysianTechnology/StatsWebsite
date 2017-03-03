@@ -1,4 +1,7 @@
-﻿using Microsoft.Owin.Extensions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using FluentScheduler;
+using Microsoft.Owin.Extensions;
 using Microsoft.Owin.FileSystems;
 using Microsoft.Owin.StaticFiles;
 using Nancy.Owin;
@@ -6,6 +9,7 @@ using Owin;
 using StatsWebsite.Data_Context;
 using StatsWebsite.Nancy;
 using StatsWebsite.Nancy.Helper_Functions;
+using Schedule = StatsWebsite.Nancy.Helper_Functions.Schedule;
 
 namespace StatsWebsite
 {
@@ -14,6 +18,7 @@ namespace StatsWebsite
         public static DataRepository leagueRepo;
         public static AlgoTestContext context;
         public static Utils.CsvHandler<LeagueData, Utils.LeagueDataMap> csvHandler;
+        public static List<MatchResult> newReturn;
         public void Configuration(IAppBuilder app)
         {
             var physicalFileSystem = new PhysicalFileSystem(@".\"); //. = root, Web = your physical directory that contains all other static content, see prev step
@@ -31,8 +36,14 @@ namespace StatsWebsite
             context = new AlgoTestContext();
             leagueRepo = new DataRepository(context);
             csvHandler = new Utils.CsvHandler<LeagueData, Utils.LeagueDataMap>();
+            JobManager.Initialize(new Schedule.WeeklyRegistry()); 
+
         }
 
+        public static void GetData()
+        {
+            
+        }
         private static void NancyConfig(NancyOptions nancyOptions)
         {
             nancyOptions.Bootstrapper = new Bootstrapper();
