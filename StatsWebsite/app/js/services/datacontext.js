@@ -2,7 +2,7 @@ import * as util from "util";
 
 module.exports = angular.module('app.datacontext', []).factory('datacontext', datacontext);
 
-function datacontext($http, $timeout, $location, $state, $rootScope, localStorageService) {
+function datacontext($http, $location, $state, $rootScope) {
 
     /* the below code will attempt to take the calling url and dynamiclly set the server location */
     const server = $location.$$protocol === 'https' ?

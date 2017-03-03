@@ -76,7 +76,7 @@ gulp.task('serve', () => {
 
   var compiler = webpack(config);
   var proxyMiddleware = require('http-proxy-middleware');
-  var proxyURL = 'http://localhost:52802';
+  var proxyURL = 'http://localhost:50562';
   var apiProxy = proxyMiddleware('/api', {
     target: proxyURL
   });

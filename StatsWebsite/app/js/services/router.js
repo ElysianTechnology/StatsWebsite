@@ -51,58 +51,12 @@ module.exports = angular.module('app.routing', []).provider('router', function (
 
         routerProvider.setCollectionUrl('../js/services/routes.json');
     })
-    .controller('MainController', ($scope, router, $transitions, $rootScope, localStorageService, datacontext) => {
+    .controller('MainController', ($scope, router) => {
         $scope.reload = () => {
             router.setUpRoutes();
         };
-
-
     })
 
-    .run((router, $transitions, $rootScope, localStorageService, datacontext, $timeout) => {
+    .run((router) => {
         router.setUpRoutes();
-
-        $transitions.onBefore({}, function (trans) {
-            // console.log('before stuff')
-            // console.log(trans)
-
-            var $state = trans.router.stateService
-            var targetState = trans.to();
-
-            $timeout(function () {
-
-                if (targetState.name === 'Login') {
-                    // console.log('going to login page')
-                    $rootScope.$broadcast('unauthorised')
-                }
-
-            }, 0);
-        });
-
-        $transitions.onStart({}, function (trans) {
-
-            // console.log(trans)
-            $timeout(function () {
-                // console.log(trans);
-                if (trans.router.stateService.current.name === 'Login') {
-                    return
-                    // trans.cancel
-                } else {
-                    datacontext.check().then(function (data) {
-                        // console.log('logging', data)
-                        if (data != undefined || null)
-                            $rootScope.$broadcast('authorised')
-
-                        return
-                    }, function (r) {
-                        // console.log('unauthorised = show login page')
-                        $state.go('Login')
-                    })
-                }
-
-            }, 0);
-        });
-
-
-
     });
